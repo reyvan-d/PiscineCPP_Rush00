@@ -12,6 +12,7 @@ Window::Window() {
 	initscr();
 	noecho();
 	cbreak();
+	timeout(1);
 	keypad(stdscr, TRUE);
 	this->window = newwin(this->height, this->width, this->startPosY, this->startPosX);
 	// box(GAME_WIN, 0, 0);

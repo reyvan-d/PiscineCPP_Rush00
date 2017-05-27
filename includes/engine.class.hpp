@@ -4,6 +4,7 @@
 #include "player.class.hpp"
 #include "enemy.class.hpp"
 #include "window.class.hpp"
+#include "ammo.class.hpp"
 #include "bullet.class.hpp"
 
 class Engine {
@@ -20,6 +21,7 @@ class Engine {
 		Enemy* enemy;
 		Window* window;
 		Bullet* bullets;
+		Ammo* ammo;
 };
 
 #endif

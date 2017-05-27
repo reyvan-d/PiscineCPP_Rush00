@@ -11,8 +11,13 @@ class Ammo : public Entities {
 		Ammo(const Ammo& ammo);
 		void operator = (const Ammo& ammo);
 		~Ammo();
-	private:
-		Bullet* bullets;
+
+		Bullet *getBullets();
+		int getMaxBullets();
+		void update();
+	protected:
+		Bullet *bullets;
+		int maxBullets;
 };
 
 #endif

@@ -1,13 +1,10 @@
 #ifndef BULLET_CLASS_H
 #define BULLET_CLASS_H
 
-#include "ammo.class.hpp"
-
-class Bullet : public Ammo
+class Bullet
 {
 	public:
 		Bullet();
-		Bullet(int x, int y);
 		Bullet(const Bullet& bullet);
 		void operator = (const Bullet& bullet);
 		~Bullet();
@@ -18,8 +15,9 @@ class Bullet : public Ammo
 		int getPosY();
 		void setIsShot(bool shot);
 		bool getIsShot();
-		void shot();
 	private:
+		int posX;
+		int posY;
 		bool isShot;
 };
 

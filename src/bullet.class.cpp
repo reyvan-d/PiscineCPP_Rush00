@@ -5,13 +5,6 @@ Bullet::Bullet()
 
 }
 
-Bullet::Bullet(int x, int y)
-{
-	this->xPosition = x;
-	this->yPosition = y - 1;
-//	shot();
-}
-
 Bullet::Bullet(const Bullet& bullet)
 {
 	*this = bullet;
@@ -29,22 +22,22 @@ Bullet::~Bullet()
 
 void Bullet::setPosX(int x)
 {
-	this->xPosition = x;
+	this->posX = x;
 }
 
 void Bullet::setPosY(int y)
 {
-	this->yPosition = y;
+	this->posY = y;
 }
 
 int Bullet::getPosX()
 {
-	return this->xPosition;
+	return this->posX;
 }
 
 int Bullet::getPosY()
 {
-	return this->yPosition;
+	return this->posY;
 }
 
 void Bullet::setIsShot(bool shot) {
@@ -53,19 +46,4 @@ void Bullet::setIsShot(bool shot) {
 
 bool Bullet::getIsShot() {
 	return this->isShot;
-}
-
-void Bullet::shot()
-{
-	int milisec = 100; // length of time to sleep, in miliseconds
-	struct timespec req = {0};
-	req.tv_sec = 0;
-	req.tv_nsec = milisec * 1000000L;
-	if (mvinch(this->yPosition, this->xPosition) == ' ')
-	{
-		nanosleep(&req, (struct timespec *) NULL);
-		this->yPosition--;
-		move(this->yPosition, this->xPosition);
-		printw("|");
-	}
 }

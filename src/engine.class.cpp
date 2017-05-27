@@ -4,7 +4,7 @@ Engine::Engine() {
 	this->window = new Window();
 	this->player = new Player();
 	this->enemy = new Enemy();
-	this->bullets = new Bullet[150];
+	this->ammo = new Ammo(150);
 }
 
 Engine::~Engine() {
@@ -48,8 +48,17 @@ void Engine::retro()
 		if (this->window->getKeyPressed() == KEY_EXIT)
 			break;
 		else if (this->window->getKeyPressed() == ' ') {
-			Bullet *bullet = new Bullet(this->player->getX(), this->player->getY());
+			if (mvgetch(this->player->getY() - 1, this->player->getX()) != '|'){
+				for (int i = 0; i < this->ammo->getMaxBullets(); i++){
+					if (!this->ammo->getBullets()[i].getIsShot()){
+						this->ammo->getBullets()[i].setIsShot(true);
+						this->ammo->getBullets()[i].setPosX(this->player->getX());
+						this->ammo->getBullets()[i].setPosY(this->player->getY() - 1);
+					}
+				}
+			}
 		}
+		this->ammo->update();
 		nanosleep(&req, (struct timespec *) NULL);
 //		bullet->setPosY(bullet->getPosY() - 1);
 //		move(bullet->getPosY(), bullet->getPosX());
