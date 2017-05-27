@@ -1,0 +1,4 @@
+#ifndef PISCINE_CPP_LIVES_HPP
+#define PISCINE_CPP_LIVES_HPP
+
+#endif

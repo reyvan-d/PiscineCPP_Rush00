@@ -15,6 +15,10 @@ class Window {
 		int getPosX();
 		void setPosY(int y);
 		int getPosY();
+		void setWidth(int width);
+		int getWidth();
+		void setHeight(int height);
+		int getHeight();
 		int getKeyPressed();
 		WINDOW* getWindow();
 private:

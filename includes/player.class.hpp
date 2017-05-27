@@ -2,6 +2,7 @@
 #define PLAYER_CLASS_H
 
 #include "entities.class.hpp"
+#include "window.class.hpp"
 
 class Player : public Entities {
     public:
@@ -13,7 +14,7 @@ class Player : public Entities {
         void movePlayer(int key, Player* player);
         void setX(int pos);
         void setY(int pos);
-		void update(int key, Player* player, int x, int y);
+		void update(Window *window);
         int getX();
         int getY();
     private:

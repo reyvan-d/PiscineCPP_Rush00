@@ -40,6 +40,13 @@ void Player::setY(int pos)
     this->yPosition = pos;
 }
 
+void Player::update(Window *window) {
+    this->xPosition = window->getPosX();
+    this->yPosition = window->getPosY();
+    move(this->yPosition, this->xPosition);
+    printw("A");
+}
+
 void Player::movePlayer(int key, Player* player)
 {
     int x, y;

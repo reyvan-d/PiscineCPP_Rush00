@@ -5,6 +5,7 @@ Engine::Engine() {
 	this->player = new Player();
 	this->enemy = new Enemy();
 	this->ammo = new Ammo(150);
+	this->score = new Score();
 }
 
 Engine::~Engine() {
@@ -25,12 +26,14 @@ void Engine::operator = (const Engine& engine)
 
 void Engine::update()
 {
-
+	this->player->update(this->window);
+	this->ammo->update();
+	this->score->update(0, this->window);
 }
 
 void Engine::retro()
 {
-	int milisec = 30; // length of time to sleep, in miliseconds
+	int milisec = 80; // length of time to sleep, in miliseconds
 	struct timespec req = {0};
 	req.tv_sec = 0;
 	req.tv_nsec = milisec * 1000000L;
@@ -38,10 +41,6 @@ void Engine::retro()
 	this->player->setX(this->window->getPosX());
 	this->player->setY(this->window->getPosY());
 	while (1) {
-		move(this->window->getPosY(), this->window->getPosX());
-		this->player->setX(this->window->getPosX());
-		this->player->setY(this->window->getPosY());
-		printw("A");
 		box(this->window->getWindow(), 0, 0);
 		this->window->keyhook();
 
@@ -49,16 +48,19 @@ void Engine::retro()
 			break;
 		else if (this->window->getKeyPressed() == ' ') {
 			if (mvgetch(this->player->getY() - 1, this->player->getX()) != '|'){
+				Bullet *bullets = this->ammo->getBullets();
 				for (int i = 0; i < this->ammo->getMaxBullets(); i++){
-					if (!this->ammo->getBullets()[i].getIsShot()){
-						this->ammo->getBullets()[i].setIsShot(true);
-						this->ammo->getBullets()[i].setPosX(this->player->getX());
-						this->ammo->getBullets()[i].setPosY(this->player->getY() - 1);
+					if (!bullets[i].getIsShot() && !this->ammo->getIsShooting()){
+						bullets[i].setIsShot(true);
+						bullets[i].setPosX(this->player->getX());
+						bullets[i].setPosY(this->player->getY() - 1);
+						this->ammo->setIsShooting(true);
 					}
 				}
+				this->ammo->setIsShooting(false);
 			}
 		}
-		this->ammo->update();
+		this->update();
 		nanosleep(&req, (struct timespec *) NULL);
 //		bullet->setPosY(bullet->getPosY() - 1);
 //		move(bullet->getPosY(), bullet->getPosX());

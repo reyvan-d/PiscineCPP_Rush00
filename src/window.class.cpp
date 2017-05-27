@@ -2,21 +2,24 @@
 #include <iostream>
 
 Window::Window() {
-	width = 90;
-	height = 30;
 	startPosX = 0;
 	startPosY = 0;
-	posX = this->width / 2;
 	posY = this->height / 2;
-
 	initscr();
 	noecho();
 	cbreak();
+	curs_set(0);
 	timeout(1);
 	keypad(stdscr, TRUE);
+	int tempWidth;
+	int tempHeight;
+	getmaxyx(stdscr, tempHeight, tempWidth);
+	this->height = tempHeight - 2;
+	this->width = tempWidth;
 	this->window = newwin(this->height, this->width, this->startPosY, this->startPosX);
-	// box(GAME_WIN, 0, 0);
-	wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
+	this->posX = this->width / 2;
+	this->posY = this->height - 2;
+	wborder(this->window, 0, 0, 0, 0, 0, 0, 0, 0);
 	wrefresh(this->window);
 	move(this->posY, this->posX);
 }
@@ -72,6 +75,22 @@ int Window::getPosX()
 int Window::getPosY()
 {
 	return this->posY;
+}
+
+void Window::setHeight(int height) {
+	this->height = height;
+}
+
+int Window::getHeight() {
+	return this->height;
+}
+
+void Window::setWidth(int width) {
+	this->width = width;
+}
+
+int Window::getWidth() {
+	return this->width;
 }
 
 int Window::getKeyPressed()

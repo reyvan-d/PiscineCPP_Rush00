@@ -1,6 +1,6 @@
 #include "../includes/bullet.class.hpp"
 
-Bullet::Bullet()
+Bullet::Bullet() : isShot(false)
 {
 
 }

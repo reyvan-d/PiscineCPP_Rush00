@@ -15,9 +15,12 @@ class Ammo : public Entities {
 		Bullet *getBullets();
 		int getMaxBullets();
 		void update();
+		bool getIsShooting();
+		void setIsShooting(bool isShooting);
 	protected:
 		Bullet *bullets;
 		int maxBullets;
+		bool isShooting;
 };
 
 #endif

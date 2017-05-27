@@ -5,7 +5,7 @@ Ammo::Ammo()
 
 }
 
-Ammo::Ammo(int bullets)
+Ammo::Ammo(int bullets) : isShooting(false)
 {
 	this->bullets = new Bullet[bullets];
 	this->maxBullets = bullets;
@@ -34,6 +34,14 @@ int Ammo::getMaxBullets() {
 	return this->maxBullets;
 }
 
+bool Ammo::getIsShooting() {
+	return this->isShooting;
+}
+
+void Ammo::setIsShooting(bool isShooting) {
+	this->isShooting = isShooting;
+}
+
 void Ammo::update() {
 	for (int i = 0; i < this->maxBullets; i++) {
 		if (bullets[i].getIsShot()) {
@@ -41,7 +49,7 @@ void Ammo::update() {
 			printw("|");
 			this->bullets[i].setPosY(this->bullets[i].getPosY() - 1);
 		}
-		if (bullets[i].getPosY() == 0){
+		if (bullets[i].getPosY() <= 0){
 			bullets[i].setIsShot(false);
 		}
 	}
