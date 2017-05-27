@@ -29,6 +29,7 @@ void Engine::update()
 	this->player->update(this->window);
 	this->ammo->update();
 	this->score->update(0, this->window);
+	this->window->updateTime();
 }
 
 void Engine::retro()
@@ -41,9 +42,8 @@ void Engine::retro()
 	this->player->setX(this->window->getPosX());
 	this->player->setY(this->window->getPosY());
 	while (1) {
-		box(this->window->getWindow(), 0, 0);
+		wborder(this->window->getWindow(), 0, 0, 0, 0, 0, 0, 0, 0);
 		this->window->keyhook();
-
 		if (this->window->getKeyPressed() == KEY_EXIT)
 			break;
 		else if (this->window->getKeyPressed() == ' ') {

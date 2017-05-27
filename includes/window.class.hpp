@@ -2,6 +2,7 @@
 #define PISCINE_CPP_WINDOW_CLASS_HPP
 
 #include <ncurses.h>
+#include <time.h>
 
 class Window {
 	public:
@@ -20,6 +21,7 @@ class Window {
 		void setHeight(int height);
 		int getHeight();
 		int getKeyPressed();
+		void updateTime();
 		WINDOW* getWindow();
 private:
 	int width;
@@ -29,6 +31,8 @@ private:
 	int posX;
 	int posY;
 	int keyPressed;
+	time_t startTime;
+	time_t elapsedTime;
 	WINDOW *window;
 };
 

@@ -2,6 +2,7 @@
 #include <iostream>
 
 Window::Window() {
+	this->startTime = time(0);
 	startPosX = 0;
 	startPosY = 0;
 	posY = this->height / 2;
@@ -29,6 +30,16 @@ Window::~Window() {}
 Window::Window(const Window& window)
 {
 	*this = window;
+}
+
+void Window::updateTime(){
+	time_t t = difftime(time(0), startTime);
+	struct tm * timeinfo;
+	char buffer[80];
+	timeinfo = localtime(&t);
+	strftime(buffer,sizeof(buffer),"%M:%S", timeinfo);
+	std::string timeString(buffer);
+	mvwprintw(stdscr, this->height, (this->width / 2) - timeString.length(), timeString.c_str());
 }
 
 void Window::operator = (const Window& window)
