@@ -4,6 +4,7 @@
 #include <ncurses.h>
 #include <time.h>
 
+
 class Window {
 	public:
 		Window();

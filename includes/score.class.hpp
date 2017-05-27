@@ -7,8 +7,8 @@
 class Score{
 	public:
 		Score();
-		Score(const Score& player);
-		void operator = (const Score& player);
+		Score(const Score& score);
+		void operator = (const Score& score);
 		~Score();
 
 		void update(int kills, Window *window);

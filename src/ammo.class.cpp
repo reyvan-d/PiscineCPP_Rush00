@@ -45,9 +45,9 @@ void Ammo::setIsShooting(bool isShooting) {
 void Ammo::update() {
 	for (int i = 0; i < this->maxBullets; i++) {
 		if (bullets[i].getIsShot()) {
-			move(bullets[i].getPosY(), this->bullets[i].getPosX());
-			printw("|");
+			mvprintw(bullets[i].getPosY(), bullets[i].getPosX(), " ");
 			this->bullets[i].setPosY(this->bullets[i].getPosY() - 1);
+			mvprintw(bullets[i].getPosY(), bullets[i].getPosX(), "|");
 		}
 		if (bullets[i].getPosY() <= 0){
 			bullets[i].setIsShot(false);

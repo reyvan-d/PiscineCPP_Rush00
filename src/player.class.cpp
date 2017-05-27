@@ -41,10 +41,10 @@ void Player::setY(int pos)
 }
 
 void Player::update(Window *window) {
+    mvwprintw( window->getWindow(), this->yPosition, this->xPosition, " ");
     this->xPosition = window->getPosX();
     this->yPosition = window->getPosY();
-    move(this->yPosition, this->xPosition);
-    printw("A");
+    mvwprintw( window->getWindow(), this->yPosition, this->xPosition, "A");
 }
 
 void Player::movePlayer(int key, Player* player)

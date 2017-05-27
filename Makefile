@@ -13,6 +13,8 @@ SRCS_NAME = main.cpp \
 			bullet.class.cpp \
 			ammo.class.cpp  \
 			score.class.cpp \
+			background.class.cpp \
+			star.class.cpp \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
