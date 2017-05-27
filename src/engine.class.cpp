@@ -3,7 +3,7 @@
 Engine::Engine() {
 	this->window = new Window();
 	this->player = new Player();
-	this->enemy = new Enemy();
+	this->enemy = new Enemy(1);
 	this->ammo = new Ammo(150);
 	this->score = new Score();
 }
@@ -26,6 +26,7 @@ void Engine::operator = (const Engine& engine)
 
 void Engine::update()
 {
+	this->enemy->update();
 	this->player->update(this->window);
 	this->ammo->update();
 	this->score->update(0, this->window);
@@ -35,7 +36,7 @@ void Engine::update()
 void Engine::retro()
 {
 	int milisec = 80; // length of time to sleep, in miliseconds
-	struct timespec req = {0};
+	struct timespec req = { 0 };
 	req.tv_sec = 0;
 	req.tv_nsec = milisec * 1000000L;
 
@@ -47,10 +48,10 @@ void Engine::retro()
 		if (this->window->getKeyPressed() == KEY_EXIT)
 			break;
 		else if (this->window->getKeyPressed() == ' ') {
-			if (mvgetch(this->player->getY() - 1, this->player->getX()) != '|'){
+			if (mvgetch(this->player->getY() - 1, this->player->getX()) != '|') {
 				Bullet *bullets = this->ammo->getBullets();
-				for (int i = 0; i < this->ammo->getMaxBullets(); i++){
-					if (!bullets[i].getIsShot() && !this->ammo->getIsShooting()){
+				for (int i = 0; i < this->ammo->getMaxBullets(); i++) {
+					if (!bullets[i].getIsShot() && !this->ammo->getIsShooting()) {
 						bullets[i].setIsShot(true);
 						bullets[i].setPosX(this->player->getX());
 						bullets[i].setPosY(this->player->getY() - 1);
@@ -58,6 +59,14 @@ void Engine::retro()
 					}
 				}
 				this->ammo->setIsShooting(false);
+			}
+		}
+		Ship *ships = this->enemy->getShips();
+		for (int i = 0; i < this->enemy->getMaxShips(); i++) {
+			if (!ships[i].getIsDeployed()) {
+				ships[i].setIsDeployed(true);
+				/*ships[i].setPosX(ships[i].getPosX() + 1);
+				ships[i].setPosY(ships[i].getPosY() + 1);*/
 			}
 		}
 		this->update();
