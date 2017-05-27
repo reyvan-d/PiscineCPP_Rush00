@@ -36,9 +36,10 @@ void initGame(){
 	cbreak();
 	keypad(stdscr, TRUE);
 	GAME_WIN = newwin(WIN_HEIGHT,WIN_WIDTH,WIN_STARTY, WIN_STARTX);
+	// box(GAME_WIN, 0, 0);
+	wborder(stdscr, 0, 0, 0, 0, 0, 0, 0, 0);
 	wrefresh(GAME_WIN);
 	move(WIN_CURSY, WIN_CURSX);
-	box(GAME_WIN, 0, 0);
 }
 
 int main()
