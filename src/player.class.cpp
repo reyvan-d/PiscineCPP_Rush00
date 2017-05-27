@@ -2,8 +2,7 @@
 
 Player::Player()
 {
-    this->xPosition = 13;
-    this->yPosition = 78;
+
 }
 
 Player::Player(const Player& player)
@@ -41,13 +40,11 @@ void Player::setY(int pos)
     this->yPosition = pos;
 }
 
-void Player::movePlayer(int key)
+void Player::movePlayer(int key, Player* player)
 {
-    Player player;
     int x, y;
-    x = player.getX();
-    y = player.getY();
-    mvdelch(y, x);
+    x = player->getX();
+    y = player->getY();
     if (key == KEY_LEFT && x > 1)
         x--;
     if (key == KEY_RIGHT && x < 79)
@@ -56,8 +53,7 @@ void Player::movePlayer(int key)
         y--;
     if (key == KEY_DOWN && y < 24)
         y++;
-    mvprintw(y, x, "A");
-    player.setX(x);
-    player.setY(y);
+    player->setX(x);
+    player->setY(y);
     return;
 }

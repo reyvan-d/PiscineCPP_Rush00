@@ -2,7 +2,7 @@
 #define ENTITIES_CLASS_H
 
 #include <iostream>
-#include <curses.h>
+#include <ncurses.h>
 
 class Entities {
     public:

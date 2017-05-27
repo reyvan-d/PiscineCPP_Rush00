@@ -5,6 +5,13 @@ INCLUDES_PATH = includes/
 SRCS_PATH = src/
 
 SRCS_NAME = main.cpp \
+			entities.class.cpp \
+			player.class.cpp \
+			enemy.class.cpp \
+			window.class.cpp \
+			engine.class.cpp \
+			bullet.class.cpp \
+			ammo.class.cpp  \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
