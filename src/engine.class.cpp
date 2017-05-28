@@ -4,7 +4,7 @@
 Engine::Engine() {
 	this->window = new Window();
 	this->player = new Player();
-	this->enemy = new Enemy(5);
+	this->enemy = new Enemy(1);
 	this->ammo = new Ammo(150);
 	this->score = new Score();
 	this->background = new Background(20, this->window);
@@ -28,9 +28,9 @@ void Engine::operator = (const Engine& engine)
 
 void Engine::update()
 {
-	this->enemy->update();
+	int i = this->enemy->update(this->window);
 	this->ammo->update();
-	this->score->update(0, this->window);
+	this->score->update(i, this->window);
 	this->window->updateTime();
 	this->background->update(this->window);
 	this->player->update(this->window);
@@ -38,7 +38,7 @@ void Engine::update()
 
 void Engine::retro()
 {
-	int milisec = 80; // length of time to sleep, in miliseconds
+	int milisec = 30; // length of time to sleep, in miliseconds
 	struct timespec req = { 0 };
 	req.tv_sec = 0;
 	req.tv_nsec = milisec * 1000000L;
@@ -66,12 +66,12 @@ void Engine::retro()
 		}
 		Ship *ships = this->enemy->getShips();
 		for (int i = 0; i < this->enemy->getMaxShips(); i++) {
-			if (!ships[i].getIsDeployed()) {
+			if (!ships[i].getIsDeployed() && !this->enemy->getIsAlive()) {
 				ships[i].setIsDeployed(true);
-				/*ships[i].setPosX(ships[i].getPosX() + 1);
-				ships[i].setPosY(ships[i].getPosY() + 1);*/
+				this->enemy->setIsAlive(true);
 			}
 		}
+		this->enemy->setIsAlive(false);
 		this->update();
 		nanosleep(&req, (struct timespec *) NULL);
 		wrefresh(this->window->getWindow());
