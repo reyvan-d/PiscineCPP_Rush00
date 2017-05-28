@@ -6,17 +6,14 @@ Star::Star(): ticks(0){
 
 void Star::update(Window *window) {
 	if (this->xPosition > 2 && this->xPosition < window->getWidth() + 2) {
-		mvprintw(this->yPosition, this->xPosition, " ");
+		mvwprintw(window->getWindow(),this->yPosition, this->xPosition, " ");
 		if (this->yPosition < window->getHeight() - 3) {
 			if (this->ticks <= 0) {
 				this->yPosition++;
-				attron(COLOR_PAIR(this->color));
-				mvprintw(this->yPosition, this->xPosition, ".");
-				attroff(COLOR_PAIR(this->color));
-				wattroff(window->getWindow(), this->color);
+				mvwprintw(window->getWindow(),this->yPosition, this->xPosition, ".");
 				this->ticks = this->defaultTicks;
 			} else {
-				mvprintw(this->yPosition, this->xPosition, ".");
+				mvwprintw(window->getWindow(),this->yPosition, this->xPosition, ".");
 				this->ticks--;
 			}
 		} else {

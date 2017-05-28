@@ -16,6 +16,7 @@ SRCS_NAME = main.cpp \
 			ship.class.cpp \
 			background.class.cpp \
 			star.class.cpp \
+			mothership.class.cpp
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

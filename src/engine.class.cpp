@@ -7,7 +7,8 @@ Engine::Engine() {
 	this->enemy = new Enemy(1);
 	this->ammo = new Ammo(150);
 	this->score = new Score();
-	this->background = new Background(20, this->window);
+	this->background = new Background(10, this->window);
+	this->mothership = new Mothership(this->window);
 }
 
 Engine::~Engine() {
@@ -28,12 +29,15 @@ void Engine::operator = (const Engine& engine)
 
 void Engine::update()
 {
+	if (this->score->getScore() == 10)
+		this->mothership->setAlive(true);
 	int i = this->enemy->update(this->window);
 	this->ammo->update();
 	this->score->update(i, this->window);
 	this->window->updateTime();
 	this->background->update(this->window);
 	this->player->update(this->window);
+	this->mothership->update(this->window);
 }
 
 void Engine::retro()

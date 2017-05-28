@@ -23,6 +23,10 @@ Score::~Score()
 
 }
 
+int Score::getScore() {
+	return this->score;
+}
+
 void Score::update(int kills, Window *window) {
 	if (kills)
 		this->score += 100;

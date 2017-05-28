@@ -10,8 +10,12 @@ Window::Window() {
 	noecho();
 	cbreak();
 	start_color();
-	init_color(COLOR_BLUE,91,91,91);
+	init_color(COLOR_BLUE, 200, 200, 200);
+	init_color(COLOR_RED, 180, 180, 180);
+	init_color(COLOR_GREEN,91,91,91);
 	init_pair(1, COLOR_BLUE, 0);
+	init_pair(2, COLOR_RED, 0);
+	init_pair(3, COLOR_GREEN, 0);
 	curs_set(0);
 	timeout(1);
 	keypad(stdscr, TRUE);

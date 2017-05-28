@@ -11,6 +11,8 @@ class Score{
 		void operator = (const Score& score);
 		~Score();
 
+		int getScore();
+
 		void update(int kills, Window *window);
 	private:
 		int score;

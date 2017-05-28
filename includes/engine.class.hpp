@@ -9,6 +9,7 @@
 #include "score.class.hpp"
 #include "background.class.hpp"
 #include "star.class.hpp"
+#include "mothership.class.hpp"
 
 class Engine {
 	public:
@@ -27,6 +28,7 @@ class Engine {
 		Ammo* ammo;
 		Score* score;
 		Background* background;
+		Mothership* mothership;
 };
 
 #endif
