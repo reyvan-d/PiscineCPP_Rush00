@@ -49,14 +49,14 @@ void Window::operator = (const Window& window)
 void Window::keyhook(){
 	this->keyPressed = getch();
 	switch(keyPressed){
-		case KEY_UP:
-			if (this->posY > 1)
-				this->posY--;
-			return ;
-		case KEY_DOWN:
-			if (this->posY < this->height - 2)
-				this->posY++;
-			return ;
+//		case KEY_UP:
+//			if (this->posY > 1)
+//				this->posY--;
+//			return ;
+//		case KEY_DOWN:
+//			if (this->posY < this->height - 2)
+//				this->posY++;
+//			return ;
 		case KEY_RIGHT:
 			if (this->posX < this->width - 2)
 				this->posX++;

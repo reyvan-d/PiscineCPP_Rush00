@@ -1,11 +1,13 @@
 #include "../includes/engine.class.hpp"
 
+
 Engine::Engine() {
 	this->window = new Window();
 	this->player = new Player();
-	this->enemy = new Enemy(1);
+	this->enemy = new Enemy(5);
 	this->ammo = new Ammo(150);
 	this->score = new Score();
+	this->background = new Background(50, this->window);
 }
 
 Engine::~Engine() {
@@ -27,10 +29,11 @@ void Engine::operator = (const Engine& engine)
 void Engine::update()
 {
 	this->enemy->update();
-	this->player->update(this->window);
 	this->ammo->update();
 	this->score->update(0, this->window);
 	this->window->updateTime();
+	this->background->update(this->window);
+	this->player->update(this->window);
 }
 
 void Engine::retro()
@@ -74,7 +77,6 @@ void Engine::retro()
 //		bullet->setPosY(bullet->getPosY() - 1);
 //		move(bullet->getPosY(), bullet->getPosX());
 //		printw("|");
-
 		wrefresh(this->window->getWindow());
 	}
 }

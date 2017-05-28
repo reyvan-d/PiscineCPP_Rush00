@@ -57,13 +57,17 @@ void Enemy::reset(Ship& ship)
 void Enemy::update() {
 	for (int i = 0; i < this->maxShips; i++) {
 		if (ships[i].getIsDeployed()) {
-			move(ships[i].getPosY() + 1, ships[i].getPosX());
+			/*mvdelch(ships[i].getPosY(), ships[i].getPosX());*/
+			move(ships[i].getPosY(), ships[i].getPosX());
+			addch(' ');
+			this->ships[i].setPosY(this->ships[i].getPosY() + 1);
+			move(ships[i].getPosY(), ships[i].getPosX());
 			/*std::cout << ships[i].getPosX() << std::endl;*/
 			addch('0');
-			this->ships[i].setPosY(this->ships[i].getPosY() + 1);
+			
 		}
 		if (ships[i].getPosY() >= 40 || mvgetch(ships[i].getPosY() + 1, ships[i].getPosX()) == '|' || mvgetch(ships[i].getPosY(), ships[i].getPosX()) == '|') {
-			/*ships[i].setIsDeployed(false);*/
+			ships[i].setIsDeployed(false);
 			reset(ships[i]);
 		}
 	}
