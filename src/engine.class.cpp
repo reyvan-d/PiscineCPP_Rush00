@@ -7,7 +7,7 @@ Engine::Engine() {
 	this->enemy = new Enemy(5);
 	this->ammo = new Ammo(150);
 	this->score = new Score();
-	this->background = new Background(50, this->window);
+	this->background = new Background(20, this->window);
 }
 
 Engine::~Engine() {
@@ -74,9 +74,6 @@ void Engine::retro()
 		}
 		this->update();
 		nanosleep(&req, (struct timespec *) NULL);
-//		bullet->setPosY(bullet->getPosY() - 1);
-//		move(bullet->getPosY(), bullet->getPosX());
-//		printw("|");
 		wrefresh(this->window->getWindow());
 	}
 }

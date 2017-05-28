@@ -9,6 +9,9 @@ Window::Window() {
 	initscr();
 	noecho();
 	cbreak();
+	start_color();
+	init_color(COLOR_BLUE,91,91,91);
+	init_pair(1, COLOR_BLUE, 0);
 	curs_set(0);
 	timeout(1);
 	keypad(stdscr, TRUE);

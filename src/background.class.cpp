@@ -15,14 +15,14 @@ Background::Background(int stars, Window* window) : totalStars(stars)
 		this->closeStars[i].setWindow(window);
 		this->closeStars[i].setDefaultTicks(0);
 		this->closeStars[i].randomPos();
-//		this->mediumStars[i].setColor(2);
-//		this->mediumStars[i].setWindow(window);
-//		this->mediumStars[i].setDefaultTicks(100);
-//		this->mediumStars[i].randomPos();
-//		this->farStars[i].setColor(2);
-//		this->farStars[i].setWindow(window);
-//		this->farStars[i].setDefaultTicks(200);
-//		this->farStars[i].randomPos();
+		this->mediumStars[i].setColor(2);
+		this->mediumStars[i].setWindow(window);
+		this->mediumStars[i].setDefaultTicks(3);
+		this->mediumStars[i].randomPos();
+		this->farStars[i].setColor(3);
+		this->farStars[i].setWindow(window);
+		this->farStars[i].setDefaultTicks(8);
+		this->farStars[i].randomPos();
 	}
 }
 
